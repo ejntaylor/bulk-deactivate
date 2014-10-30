@@ -1,12 +1,12 @@
 
+Version 0.2
+==============
 
-Version 1.0.2
-=============
+- Added multi select exception list
+- Added Chosen 
 
-- Fixed no appearance on some themes
-- Geographic beta work started
 
-Version 1.0.1
-=============
 
-Small change to rename as Tax Toggle and not VAT Toggle
+Version 0.1
+==============
+Basic Deactivate

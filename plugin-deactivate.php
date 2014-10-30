@@ -7,7 +7,7 @@
  * Description: Quickly deactivate and activate all your plugins
  * Author: raisonon
  * Author URI: http://www.raison.co/
- * Version: 1.0.1
+ * Version: 0.2
  * License: GPLv2 or later
  * Text Domain: woocommerce-taxtog
  */

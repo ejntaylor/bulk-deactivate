@@ -104,31 +104,10 @@ function de_plug() {
 
 	$savedPlugins = get_option('savedPlugins');	
 	$active_plugins = get_option('active_plugins');
-	$exclude_file_main = "plugin-deactivate/plugin-deactivate.php";	
-
-	$exclude_file_1 = $_GET['exception1'];
-	$exclude_file_2 = $_GET['exception2'];
-	$exclude_file_3 = $_GET['exception3'];
-	$exclude_file_4 = $_GET['exception4'];
-	$exclude_file_5 = $_GET['exception5'];
-	$exclude_file_6 = $_GET['exception6'];
-	$exclude_file_7 = $_GET['exception7'];
-	
-	
-	
-	
-	
-	$exclude = array($exclude_file_main,$exclude_file_1, $exclude_file_2, $exclude_file_3, $exclude_file_4, $exclude_file_5,$exclude_file_6,$exclude_file_7,$exclude_file_8,$exclude_file_9);
-	
-	
-	
-	
+	$exclude_file_main = array("plugin-deactivate/plugin-deactivate.php");	
 	$exceptionselect=$_GET['exceptionselect'];
-	var_dump($exceptionselect);
-	
-	
-	
-	$filtered = array_diff($active_plugins, $exceptionselect);
+	$exclude = array_merge($exclude_file_main,$exceptionselect);
+	$filtered = array_diff($active_plugins, $exclude);
 
 	add_option('savedPlugins', $filtered);
 	
@@ -172,56 +151,12 @@ function de_plug() {
 }
 
 ?>
-
-<script type="text/javascript">
-
-// http://jesin.tk/dynamic-textbox-jquery-php/
-
-jQuery(document).ready(function($){
-    $('.my-form .add-box').click(function(){
-        var n = $('.text-box').length + 1;
-        if( 20 < n ) {
-            alert('Limited to 20 Plugins - Come on you don\'t need that many!');
-            return false;
-        }
-        var box_html = $('<p class="text-box">\n\
-			<label for="box' + n + '"><span class="box-number">' + n + '.</span></label>\n\
-			<input type="text" name="bamboo_setting[req_plugins_arr][multiarray][' + n + '][name]" value="" id="box' + n + '" />\n\
-			<a href="#" class="remove-box">Remove</a></p>');
-        box_html.hide();
-        $('.my-form p.text-box:last').after(box_html);
-        box_html.fadeIn('slow');
-        return false;
-    });
-    $('.my-form').on('click', '.remove-box', function(){
-        $(this).parent().css( 'background-color', '#FF6C6C' );
-        $(this).parent().fadeOut("slow", function() {
-            $(this).remove();
-            $('.box-number').each(function(index){
-                $(this).text( index + 1 );
-            });
-        });
-        return false;
-    });
-
-    $('.my-form .domain-add-box').click(function(){
-        var n = $('.domain-text-box').length + 1;
-        if( 20 < n ) {
-            alert('Limited to 20 Plugins - Come on you don\'t need that many!');
-            return false;
-        }
-
-        var box_html = $('<p class="domain-text-box">\n\
-			<label for="box1">Domain Name <span class="domain-box-number">' + n + '</span></label>\n\
-			<input type="text" name="bamboo_setting[allowed_domains_arr][multiarray][]" value="" id="domain-box' + n + '" />\n\
-			<a href="#" class="remove-box">Remove</a></p>');
-        box_html.hide();
-        $('.my-form p.domain-text-box:last').after(box_html);
-        box_html.fadeIn('slow');
-        return false;
-    });
-
-
+<script>
+	jQuery(function(){
+       jQuery('.chosen-select').chosen();
+       jQuery('.chosen-select-deselect').chosen({ allow_single_deselect: true });
+ 
+ 
 });
 </script>
 
@@ -230,64 +165,16 @@ jQuery(document).ready(function($){
 
 <p>Deactivated plugins are saved in a list below and can then be activated again. If you want some plugins to remain .</p>
 
-<form>
+<form class="exception-list">
 	<input type="hidden" name="action" value="deactivate">
 	
 	<h4>Exceptions</h4>
-	<p>Any plugins added here will not be deactivated</p>
-	<!--
-	<input type="text" name="exception2" value="bamboo/bamboo.php"><br>
-	<input type="text" name="exception3" value="" placeholder="plugin-slug/plugin-name.php"><br>
-	<input type="text" name="exception4" value="" placeholder="add your plugins here"><br>
-	-->
+	<p>Plugins selected here will not be deactivated.</p>
 	<hr>
 
-<!--
-<?php	
-
-	if (!empty($default_plugins)) {
-	$i = 1;
-	foreach ($default_plugins as $key => $values) :
-		?>
-
-		<p class="text-box">
-			<label for="box<?php echo $key+1; ?>"><span class="box-number"><?php echo $key+1; ?>.</span>
-			<input type="text" name="exception<?php echo $i; ?>" value="<?php echo $values['name']; ?>" id="box<?php echo $key+1; ?>" />
-			</label>
-
-			<?php echo ( 0 == $key ? '' : '<a href="#" class="remove-box">Remove</a>' ); ?>
-		</p>
-		<?php
-		 $i++;
-	endforeach;
-	echo '<p><a href="#" class="add-box">Add More</a></p>';
-} else {
-
-	global $BambooPlugin;
-
-    ?>
-        <p class="text-box">
-            <label for="box1">Name <span class="box-number">1</span></label>
-            <input type="text" name="<?php echo $default_plugins; ?>[0][name]" value="" id="box1" />
-
-        </p>
-	<p><a href="#" class="add-box">Add More</a></p>
-<?php
-    }
-
-
-
-?>	
--->
-
-<hr>
-
-<h5>Beta</h5>
-
-
-<select name="exceptionselect[]" multiple="multiple">
-	<?php get_plugin_file(); ?>
-</select>
+		<select class="chosen-select" name="exceptionselect[]" multiple="multiple">
+			<?php get_plugin_file(); ?>
+		</select>
 		
 	<hr>
 
