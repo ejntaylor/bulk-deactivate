@@ -59,10 +59,13 @@ function get_plugin_file(  ) {
     foreach( $plugins as $plugin_file => $plugin_info ) {
         
         $base_name = plugin_basename( $plugin_file );
-        echo '<option name="exception' . $n .'" value="' . $base_name . '">';
-        echo $base_name;
-		echo '</option>';
-		$n++;
+        
+        if ( is_plugin_active( $base_name ) ) {
+	        echo '<option name="exception' . $n .'" value="' . $base_name . '">';
+	        echo $base_name;
+			echo '</option>';
+			$n++;
+		}
     }
     return null;
 
@@ -105,7 +108,8 @@ function de_plug() {
 	$savedPlugins = get_option('savedPlugins');	
 	$active_plugins = get_option('active_plugins');
 	$exclude_file_main = array("plugin-deactivate/plugin-deactivate.php");	
-	$exceptionselect=$_GET['exceptionselect'];
+
+	$exceptionselect = (isset($_GET['exceptionselect']) && $_GET['exceptionselect'] != '') ? $_GET['exceptionselect'] : array();	
 	$exclude = array_merge($exclude_file_main,$exceptionselect);
 	$filtered = array_diff($active_plugins, $exclude);
 
