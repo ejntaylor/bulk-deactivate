@@ -31,3 +31,14 @@ input[type="submit"]:hover,input[type="submit"]:focus {
 .chosen-container {
 	width:100%!important;
 }
+
+.bb_twocol {
+width: 45%;
+float: left;
+margin-right: 5%;
+overflow: hidden;
+}
+
+.bb_twocol.last {
+margin-right: 0;
+}
