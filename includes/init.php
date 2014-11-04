@@ -1,43 +1,5 @@
 <?php
 	
-/*
-	// Add Menu Items
-function deactiv_options_panel(){
-  
-  // add sub-menus
-  add_submenu_page( 'plugins.php', 'Bulk Deactivate', 'Bulk Deactivate', 'manage_options', 'deactivate', 'deactiv_deactivate');
-
-  // Styles
-   add_action( 'admin_print_styles-' . $submenu, 'pdeactiv_custom_css' );
-   
-  // Scripts
-   add_action( 'admin_print_scripts-' . $submenu, 'chosen' );
-   
-}
-
-add_action('admin_menu', 'deactiv_options_panel');
-}
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -56,12 +18,12 @@ add_action( 'admin_menu', 'deactiv_options_panel' ); // hook so we can add menus
     // This function is only called when our plugin's page loads!
     function load_admin_js(){
         // Unfortunately we can't just enqueue our scripts here - it's too early. So register against the proper action hook to do it
-        add_action( 'admin_enqueue_scripts', 'enqueue_admin_js' );
-        add_action( 'admin_enqueue_scripts', 'enqueue_admin_css' );
+        add_action( 'admin_enqueue_scripts', 'deactiv_enqueue_admin_js' );
+        add_action( 'admin_enqueue_scripts', 'deactiv_enqueue_admin_css' );
 
     }
 
-    function enqueue_admin_js(){
+    function deactiv_enqueue_admin_js(){
         wp_enqueue_script( 'jquery' );
        // wp_enqueue_script( 'jquery-ui-tabs' );
 
@@ -70,7 +32,7 @@ add_action( 'admin_menu', 'deactiv_options_panel' ); // hook so we can add menus
     }
 
 
-    function enqueue_admin_css(){
+    function deactiv_enqueue_admin_css(){
 		
 wp_register_style( 'deactiv', plugins_url('/assets/css/deactiv.css', dirname(__FILE__)), false, '1.0.0' );		 
 wp_register_style( 'chosencss', plugins_url('/libs/chosen/chosen.css', dirname(__FILE__)), false, '1.0.0' );
@@ -78,26 +40,6 @@ wp_enqueue_style( 'deactiv' );
 wp_enqueue_style( 'chosencss' ); 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -1,40 +1,48 @@
 <?php
 	
+// default plugins
 	
-	$default_plugins = Array(
-			0 => array(
-				'name' => 'woocommerce/woocommerce.php',
-			) ,
-			1 => array(
-				'name' => 'bamboo/bamboo.php',
-			),
-			2 => array(
-				'name' => 'wordpress-seo/wordpress-seo.php',
-			) ,
-	);
+	
+$default_plugins = Array(
+		0 => array(
+			'name' => 'woocommerce/woocommerce.php',
+		) ,
+		1 => array(
+			'name' => 'bamboo/bamboo.php',
+		),
+		2 => array(
+			'name' => 'wordpress-seo/wordpress-seo.php',
+		) ,
+);
 
 // Page Logic
 
-    if($_GET['action'] == 'deactivate'){
-        de_plug();
-    }elseif($_GET['action'] == 'activate'){
-		newSaved();
+$deactiv_action = isset($_GET['action']) ? $_GET['action'] : '';
+
+
+    if($deactiv_action == 'deactivate'){
+        deactiv_de_plug();
     }
+    
+    elseif($deactiv_action == 'activate'){
+		deactiv_newSaved();
+    }
+    
 
 
 // Saved Plugins
 
-function savedPlugins() {
+function deactiv_deactiv_saved_plugins() {
 
-	$savedPlugins = get_option('savedPlugins');
-	if ($savedPlugins) :
+	$deactiv_saved_plugins = get_option('deactiv_saved_plugins');
+	if ($deactiv_saved_plugins) :
 		echo '<ul class="chk-container">';
 		echo '<form>';
 		echo '<input type="submit" value="Activate Selected Plugins" />';
 		echo '<br /><br />';
 		echo '<li><input type="checkbox" id="selecctall" checked="checked"/><strong>Selecct / De-select All</strong></li>';
 
-			foreach($savedPlugins as $plugin => $value) {
+			foreach($deactiv_saved_plugins as $plugin => $value) {
 				echo '<li><input class="checkbox1" type="checkbox" name="plugins[]" value="' .$value. '" checked="checked">' . $value . "</li>";
 			}
 
@@ -51,7 +59,7 @@ function savedPlugins() {
 
 // Get Plugin Details
 
-function get_plugin_file(  ) {
+function deactiv_get_plugin_file(  ) {
 	
 	$n = 1;
     require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
@@ -77,10 +85,10 @@ function get_plugin_file(  ) {
 // Activating Plugins
 
 
-function newSaved() {
-	$savedPlugins = get_option('savedPlugins');
+function deactiv_newSaved() {
+	$deactiv_saved_plugins = get_option('deactiv_saved_plugins');
 	$chosenPlugins = $_GET['plugins'];
-	$filteredUpdate = array_diff($savedPlugins, $chosenPlugins);
+	$filteredUpdate = array_diff($deactiv_saved_plugins, $chosenPlugins);
 	
 	echo '<div class="updated"><p>Plugins Activated</p>';      
 		
@@ -93,7 +101,7 @@ function newSaved() {
 		echo '<br /><br /><strong>Total Activated: '. $n . '</strong>';
 		$n = 0;
     echo '</div>';
-   	update_option('savedPlugins', $filteredUpdate);
+   	update_option('deactiv_saved_plugins', $filteredUpdate);
 
 
    
@@ -103,9 +111,9 @@ function newSaved() {
 // Deactivating Plugins
 
 
-function de_plug() {
+function deactiv_de_plug() {
 
-	$savedPlugins = get_option('savedPlugins');	
+	$deactiv_saved_plugins = get_option('deactiv_saved_plugins');	
 	$active_plugins = get_option('active_plugins');
 	$exclude_file_main = array("plugin-deactivate/plugin-deactivate.php");	
 
@@ -113,7 +121,7 @@ function de_plug() {
 	$exclude = array_merge($exclude_file_main,$exceptionselect);
 	$filtered = array_diff($active_plugins, $exclude);
 
-	add_option('savedPlugins', $filtered);
+	add_option('deactiv_saved_plugins', $filtered);
 	
 	if ($_GET['save'] == 'nochanges') {
 	
@@ -123,13 +131,13 @@ function de_plug() {
 		
 		elseif ($_GET['save'] == 'update') {
 		
-			$updateList = array_merge($filtered, $savedPlugins);
-			update_option('savedPlugins', $updateList);
+			$updateList = array_merge($filtered, $deactiv_saved_plugins);
+			update_option('deactiv_saved_plugins', $updateList);
 
 	
 	} else {
 		
-		update_option('savedPlugins', $filtered);
+		update_option('deactiv_saved_plugins', $filtered);
 		
 	
 	}
@@ -177,7 +185,7 @@ function de_plug() {
 	<hr>
 
 		<select class="chosen-select" name="exceptionselect[]" multiple="multiple">
-			<?php get_plugin_file(); ?>
+			<?php deactiv_get_plugin_file(); ?>
 		</select>
 		
 	<hr>
@@ -204,6 +212,6 @@ function de_plug() {
 <p>Select plugins to be activated. Once activated they will be removed from the save list.</p>
 
 
-<?php savedPlugins(); ?>
+<?php deactiv_deactiv_saved_plugins(); ?>
 
 </div>
