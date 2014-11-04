@@ -12,11 +12,11 @@ add_action( 'admin_menu', 'deactiv_options_panel' ); // hook so we can add menus
         $deactiv_page = add_submenu_page( 'plugins.php', 'Bulk Deactivate', 'Bulk Deactivate', 'manage_options', 'deactivate', 'deactiv_deactivate');
         
         // Load the JS conditionally
-        add_action( 'load-' . $deactiv_page, 'load_admin_js' );
+        add_action( 'load-' . $deactiv_page, 'deactiv_load_admin_js' );
     }
 
     // This function is only called when our plugin's page loads!
-    function load_admin_js(){
+    function deactiv_load_admin_js(){
         // Unfortunately we can't just enqueue our scripts here - it's too early. So register against the proper action hook to do it
         add_action( 'admin_enqueue_scripts', 'deactiv_enqueue_admin_js' );
         add_action( 'admin_enqueue_scripts', 'deactiv_enqueue_admin_css' );

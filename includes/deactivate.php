@@ -32,7 +32,7 @@ $deactiv_action = isset($_GET['action']) ? $_GET['action'] : '';
 
 // Saved Plugins
 
-function deactiv_deactiv_saved_plugins() {
+function deactiv_saved_plugins() {
 
 	$deactiv_saved_plugins = get_option('deactiv_saved_plugins');
 	if ($deactiv_saved_plugins) :
@@ -166,9 +166,7 @@ function deactiv_de_plug() {
 <script>
 	jQuery(function(){
        jQuery('.chosen-select').chosen();
-       jQuery('.chosen-select-deselect').chosen({ allow_single_deselect: true });
- 
- 
+       jQuery('.chosen-select-deselect').chosen({ allow_single_deselect: true }); 
 });
 </script>
 
@@ -212,6 +210,6 @@ function deactiv_de_plug() {
 <p>Select plugins to be activated. Once activated they will be removed from the save list.</p>
 
 
-<?php deactiv_deactiv_saved_plugins(); ?>
+<?php deactiv_saved_plugins(); ?>
 
 </div>
