@@ -115,7 +115,7 @@ function deactiv_de_plug() {
 
 	$deactiv_saved_plugins = get_option('deactiv_saved_plugins');	
 	$active_plugins = get_option('active_plugins');
-	$exclude_file_main = array("plugin-deactivate/plugin-deactivate.php");	
+	$exclude_file_main = array("bulk-deactivate/bulk-deactivate.php");	
 
 	$exceptionselect = (isset($_GET['exceptionselect']) && $_GET['exceptionselect'] != '') ? $_GET['exceptionselect'] : array();	
 	$exclude = array_merge($exclude_file_main,$exceptionselect);
