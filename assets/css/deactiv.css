@@ -1,0 +1,44 @@
+form.exception-list {
+width:100%;
+}
+
+input[type="submit"] {
+	color:#fff;
+	border-radius:4px;
+	text-shadow:0 1px 1px rgba(0,0,0,0.2);
+	background:#ca3c3c;
+	border:0;
+	padding:10px 40px;
+	margin:20px 0;
+	width:100%;
+}
+
+input[type="submit"]:hover,input[type="submit"]:focus {
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000',endColorstr='#1a000000',GradientType=0);
+	background-image:-webkit-gradient(linear,0 0,0 100%,from(transparent),color-stop(40%,rgba(0,0,0,.05)),to(rgba(0,0,0,.1)));
+	background-image:-webkit-linear-gradient(transparent,rgba(0,0,0,.05) 40%,rgba(0,0,0,.1));
+	background-image:-moz-linear-gradient(top,rgba(0,0,0,.05) 0,rgba(0,0,0,.1));
+	background-image:-o-linear-gradient(transparent,rgba(0,0,0,.05) 40%,rgba(0,0,0,.1));
+	background-image:linear-gradient(transparent,rgba(0,0,0,.05) 40%,rgba(0,0,0,.1));
+	cursor:pointer;
+}
+
+.bb_twocol {
+	position:relative;
+	overflow:visible;
+}
+
+.chosen-container {
+	width:100%!important;
+}
+
+.bb_twocol {
+width: 45%;
+float: left;
+margin-right: 5%;
+overflow: hidden;
+}
+
+.bb_twocol.last {
+margin-right: 0;
+}
