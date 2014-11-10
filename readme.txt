@@ -4,7 +4,7 @@ Donate link: http://raison.co/
 Tags: plugin, bulk deactivate, deactivate, activate, debug
 Requires at least: 3.0.1
 Tested up to: 3.4
-Stable tag: 0.2.1
+Stable tag: 0.2.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -44,6 +44,10 @@ Your theme might be dependent on a plugin that was active. A quick fix is to ren
 
 
 == Changelog ==
+
+= 0.2.3 =
+* Fix CSS enqueue for bulk deactive page only
+* Fix Error item
 
 = 0.2.1 =
 * First launch into the wild

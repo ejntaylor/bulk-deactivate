@@ -7,9 +7,9 @@
  * Description: Quickly deactivate and activate all your plugins
  * Author: raisonon
  * Author URI: http://www.raison.co/
- * Version: 0.2.1
+ * Version: 0.2.3
  * License: GPLv2 or later
- * Text Domain: woocommerce-taxtog
+ * Text Domain: deactiv
  */
  
  
@@ -38,52 +38,10 @@ add_option('DEACTIV_VERSION_KEY', 'DEACTIV_VERSION_NUM');
 
 
 
-// Enqueue Scripts
-
- 
-
-function deactiv_stylesheet() {
-		wp_register_style( 'DEACTIV-css', DEACTIV_URL . '/assets/css/deactiv.css', array(), DEACTIV_VERSION_NUM, 'all' );
-		wp_enqueue_style( 'DEACTIV-css' );
-	} // End woo_shortcode_stylesheet()
-
-
-add_action( 'admin_enqueue_scripts', 'deactiv_stylesheet', 25 );
-
-
-function register_deactiv_script() {
-	wp_register_script('deactiv-js', DEACTIV_URL . '/assets/js/deactiv.js', array('jquery'), DEACTIV_VERSION_NUM, true);
-}
-
-
-function print_deactiv_head() {
-	wp_print_scripts('deactiv-js');
-}
-
-
-/*
-add_action('admin_init', 'register_DEACTIV_script');
-add_action('admin_print_scripts', 'print_DEACTIV_head');
-*/
-
-
-
-
-
-
-
 // includes
 
 include_once('includes/init.php');
 
- 
- 
- 
- 
- 
- 
- 
- 
  
  
  
